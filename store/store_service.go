@@ -48,7 +48,7 @@ func SaveUrlMapping(shortUrl string, originalUrl string, userId string) {
 func RetrieveOriginalUrl(shortUrl string) string {
 	result, err := storeService.redisClient.Get(ctx, shortUrl).Result()
 	if err != nil {
-		panic(fmt.Sprintf("Failed RetrieveInitialUrl url | Error: %v - shortUrl: %s\n", err, shortUrl))
+		panic(fmt.Sprintf("Failed RetrieveOriginalUrl url | Error: %v - shortUrl: %s\n", err, shortUrl))
 	}
 
 	return result
