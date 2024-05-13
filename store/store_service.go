@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
+	"os"
 	"time"
 )
 
@@ -22,7 +23,7 @@ func InitializeStore() *StorageService {
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:     "redis-16870.c328.europe-west3-1.gce.redns.redis-cloud.com:16870",
 		Username: "default",
-		Password: "",
+		Password: os.Getenv("REDIS_PASS"),
 		DB:       0,
 	})
 
