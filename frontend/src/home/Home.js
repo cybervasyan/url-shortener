@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-
+import './Home.css';
 
 function Home() {
     const [message, setMessage] = useState("");
@@ -23,8 +23,8 @@ function Home() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Очистка предыдущих ошибок
-        setShortUrl(''); // Очистка предыдущего URL
+        setError('');
+        setShortUrl('');
 
         if (!url) {
             setError('Пожалуйста, введите URL пользователя.');
@@ -32,9 +32,13 @@ function Home() {
         }
 
         try {
-            const response = await axios.post('http://localhost:1488/create-short-url', { url, userId });
+            const response = await axios.post('http://localhost:1488/create-short-url', {
+                longUrl: url,
+                userId: userId
+            });
             if (response.data.shortUrl) {
                 setShortUrl(response.data.shortUrl);
+                setError('')
             } else {
                 throw new Error('Сервер вернул ошибку');
             }
@@ -50,6 +54,8 @@ function Home() {
                 <input
                     type="text"
                     placeholder="Введите URL"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
                     required
                 />
                 <button type="submit">Сократить URL</button>
