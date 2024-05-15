@@ -11,6 +11,7 @@ function Home() {
     const [shortUrl, setShortUrl] = useState("");
     const [error, setError] = useState("");
     const [qrCode, setQrCode] = useState("");
+    const [copySuccess, setCopySuccess] = useState("");
 
 
     useEffect(() => {
@@ -39,6 +40,9 @@ function Home() {
         e.preventDefault();
         setError('');
         setShortUrl('');
+        setCopySuccess('');
+        setQrCode('');
+
 
         if (!url) {
             setError('Пожалуйста, введите URL пользователя.');
@@ -66,9 +70,17 @@ function Home() {
         }
     };
 
+    const handleCopy = () => {
+        navigator.clipboard.writeText(shortUrl).then(() => {
+            setCopySuccess('Ссылка скопирована!');
+        }, () => {
+            setCopySuccess('Ошибка при копировании ссылки.');
+        });
+    };
+
     return (
-        <div className="home">
-            <h1>{message}</h1>
+        <div className="container">
+            <h1 className="title">{message}</h1>
             <form onSubmit={handleSubmit} className="url-form">
                 <input
                     type="text"
@@ -77,10 +89,12 @@ function Home() {
                     onChange={(e) => setUrl(e.target.value)}
                     required
                 />
-                <button type="submit">Сократить URL</button>
+                <button type="submit" className="submit-button">Сократить URL</button>
             </form>
             {shortUrl && (
-                <div>
+                <div className="result">
+                    <button onClick={handleCopy} className="copy-button">Копировать ссылку</button>
+                    {copySuccess && <p className="copy-success">{copySuccess}</p>}
                     <p>Сокращённый URL: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a></p>
                     <QRCode value={shortUrl} />
                 </div>
