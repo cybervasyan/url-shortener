@@ -1,0 +1,112 @@
+.container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.url-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.url-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: border-color 0.3s;
+}
+
+.url-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.result p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.result a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.result a:hover {
+    color: #0056b3;
+}
+
+.copy-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #218838;
+}
+
+.copy-success {
+    color: green;
+    margin-top: 10px;
+}
+
+.qr-code {
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
