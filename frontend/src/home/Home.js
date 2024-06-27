@@ -72,9 +72,9 @@ function Home() {
 
     const handleCopy = () => {
         navigator.clipboard.writeText(shortUrl).then(() => {
-            setCopySuccess('Ссылка скопирована!');
+            setCopySuccess(true);
         }, () => {
-            setCopySuccess('Ошибка при копировании ссылки.');
+            setCopySuccess(false);
         });
     };
 
@@ -93,10 +93,16 @@ function Home() {
             </form>
             {shortUrl && (
                 <div className="result">
-                    <button onClick={handleCopy} className="copy-button">Копировать ссылку</button>
+                    <button
+                        onClick={handleCopy}
+                        className={`copy-button ${copySuccess ? 'copied' : ''}`}
+                    >
+                        {copySuccess ? 'Ссылка скопирована!' : 'Копировать ссылку'}
+                    </button>
+
                     {copySuccess && <p className="copy-success">{copySuccess}</p>}
                     <p>Сокращённый URL: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a></p>
-                    <QRCode value={shortUrl} />
+                    <QRCode value={shortUrl}/>
                 </div>
             )}
             {error && <p className="error">{error}</p>}
